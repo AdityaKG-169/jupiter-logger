@@ -1,5 +1,14 @@
-const logger = () =>
-  function logResponseBody(req, res, next) {
+const chalk = require('chalk');
+const validateIncomingOptions = require('./helpers/validateIncomingOptions');
+
+const logger = (options) => {
+  const response = validateIncomingOptions(options);
+
+  if (response.type === 'error') {
+    return console.log(chalk.red(response.message));
+  }
+
+  return function logResponseBody(req, res, next) {
     const oldWrite = res.write;
     const oldEnd = res.end;
 
@@ -24,5 +33,6 @@ const logger = () =>
 
     next();
   };
+};
 
 module.exports = logger;
