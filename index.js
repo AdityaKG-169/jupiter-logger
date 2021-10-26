@@ -1,12 +1,20 @@
 const chalk = require('chalk');
 const validateIncomingOptions = require('./helpers/validateIncomingOptions');
+const validateStatusCodes = require('./helpers/validateStatusCodes');
 
 const logger = (options) => {
   const response = validateIncomingOptions(options);
-
   if (response.type === 'error') {
     return console.log(chalk.red(response.message));
   }
+
+  const validatedCodesResponse = validateStatusCodes(options.statusCodes);
+  if (validatedCodesResponse.type === 'error') {
+    return console.log(chalk.red(response.message));
+  }
+
+  const { apiKey, logLocation } = options;
+  const trueStatusCodes = validatedCodesResponse.message;
 
   return function logResponseBody(req, res, next) {
     const oldWrite = res.write;
@@ -28,7 +36,13 @@ const logger = (options) => {
 
       oldEnd.apply(res, arguments);
 
-      console.log(body, statusCode);
+      console.log(
+        body,
+        parseInt(statusCode),
+        apiKey,
+        logLocation,
+        trueStatusCodes
+      );
     };
 
     next();
