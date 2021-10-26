@@ -1,0 +1,30 @@
+{
+	"name": "jupiter-logger",
+	"version": "0.0.0",
+	"description": "An npm package that lets you save your in-app logs in a csv file",
+	"main": "index.ts",
+	"scripts": {
+		"push": "npm publish --access=public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AdityaKG-169/jupiter-logger.git"
+	},
+	"keywords": [
+		"jupiter-logger",
+		"express",
+		"http",
+		"logger",
+		"middleware",
+		"logging",
+		"nodejs",
+		"node",
+		"javascript"
+	],
+	"author": "Aditya Krishna Gupta",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/AdityaKG-169/jupiter-logger/issues"
+	},
+	"homepage": "https://github.com/AdityaKG-169/jupiter-logger#readme"
+}
