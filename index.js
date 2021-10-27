@@ -15,7 +15,7 @@ const logger = (options) => {
 
   const validatedCodesResponse = validateStatusCodes(options.statusCodes);
   if (validatedCodesResponse.type === 'error')
-    throw new Error(response.message);
+    throw new Error(validatedCodesResponse.message);
 
   // eslint-disable-next-line no-unused-vars
   const { apiKey, logLocation } = options;

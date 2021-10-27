@@ -1,6 +1,6 @@
 {
   "name": "jupiter-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An npm package that lets you save your in-app logs in a csv file",
   "main": "index.js",
   "engines": {
