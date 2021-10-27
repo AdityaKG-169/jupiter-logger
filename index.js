@@ -12,12 +12,14 @@ const validateStatusCodes = require('./helpers/validateStatusCodes');
 const logger = (options) => {
   const response = validateIncomingOptions(options);
   if (response.type === 'error') {
-    return console.log(chalk.red(response.message));
+    console.log(chalk.red(response.message));
+    throw new Error(response.message);
   }
 
   const validatedCodesResponse = validateStatusCodes(options.statusCodes);
   if (validatedCodesResponse.type === 'error') {
-    return console.log(chalk.red(response.message));
+    console.log(chalk.red(response.message));
+    throw new Error(response.message);
   }
 
   const { apiKey, logLocation } = options;
