@@ -6,7 +6,11 @@ const validateStatusCodes = (statusCodes) => {
     };
   }
 
-  const finalStatusCodes = statusCodes.map((i) => parseInt(i));
+  const finalStatusCodes = statusCodes.map((i) => {
+    const numberReg = /^[0-9]+$/;
+    if (numberReg.test(i)) return parseInt(i);
+    return NaN;
+  });
 
   if (finalStatusCodes.includes(NaN)) {
     return {
