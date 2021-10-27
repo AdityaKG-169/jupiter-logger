@@ -1,4 +1,4 @@
-const logIntoCsv = require('./helpers/logIntoCsv');
+const logIntoJson = require('./helpers/logIntoJson');
 const validateIncomingOptions = require('./helpers/validateIncomingOptions');
 const validateStatusCodes = require('./helpers/validateStatusCodes');
 
@@ -22,23 +22,11 @@ const logger = (options) => {
   const selectedStatusCodes = validatedCodesResponse.message;
 
   return function logResponseBody(req, res, next) {
-    const oldWrite = res.write;
-    const oldEnd = res.end;
+    const oldEnd = res.send;
 
-    const chunks = [];
-
-    res.write = function (chunk) {
-      chunks.push(chunk);
-
-      return oldWrite.apply(res, arguments);
-    };
-
-    res.end = function (chunk) {
-      if (chunk) chunks.push(chunk);
-
-      const body = Buffer.concat(chunks).toString('utf8');
-      const statusCode = res.statusCode.parseInt();
-
+    res.send = function (chunk) {
+      const body = JSON.stringify(chunk);
+      const statusCode = parseInt(res.statusCode);
       oldEnd.apply(res, arguments);
 
       if (
@@ -50,8 +38,8 @@ const logger = (options) => {
         next();
       }
 
-      if (logLocation === 'csv') {
-        logIntoCsv(body, statusCode);
+      if (logLocation === 'json') {
+        logIntoJson(body, statusCode);
       }
     };
 

@@ -17,7 +17,7 @@ const validateIncomingOptions = (options) => {
     };
   }
 
-  if (logLocation !== 'csv' && logLocation !== 'server') {
+  if (logLocation !== 'json' && logLocation !== 'server') {
     return {
       type: 'error',
       message:
