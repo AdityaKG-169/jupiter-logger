@@ -3,6 +3,9 @@
   "version": "0.0.3",
   "description": "An npm package that lets you save your in-app logs in a csv file",
   "main": "index.js",
+  "engines": {
+    "node": "^12.0.0"
+  },
   "scripts": {
     "push": "npm publish --access=public",
     "lint": "eslint ./"
@@ -37,8 +40,5 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.4.1"
-  },
-  "dependencies": {
-    "chalk": "^4.1.2"
   }
 }
