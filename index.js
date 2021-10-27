@@ -2,6 +2,13 @@ const chalk = require('chalk');
 const validateIncomingOptions = require('./helpers/validateIncomingOptions');
 const validateStatusCodes = require('./helpers/validateStatusCodes');
 
+/**
+ * @param
+ * - logLocation
+ * - statusCodes
+ * - apiKey
+ */
+
 const logger = (options) => {
   const response = validateIncomingOptions(options);
   if (response.type === 'error') {
